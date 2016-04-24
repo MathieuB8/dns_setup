@@ -1,0 +1,38 @@
+Rapport DNS
+
+I. Choix pour le DNS
+Pour réaliser le serveur DNS, on a utilisé bind qui est le logiciel le plus utilisé actuellement.
+
+
+II. Guide d'utilisation
+>Il faut tout d'abord install bind9 :
+sudo apt-get install bind9
+
+>Il faut ensuite aller modifier le fichier /etc/bind/named.conf.options:
+forwarders {
+       8.8.8.8;
+       8.8.4.4;
+       };
+Ainsi on utilise les serveurs DNS de google si le dns ne trouve pas de réponse. (tester sans forwarders brah)
+
+>Modifier ensuite le /etc/resolv.conf :
+nameserver 127.0.0.1
+
+
+III. Verification de la configuration
+Pour cela on a utilisé les commandes named-checkconf -z (Perform a test load of all master zones found in named.conf. ), named-checkzone, ? et nslookup(pas dig?)
+
+Exemple:
+named-checkzone worldCompany /etc/bind/zones/db.10.4
+named-checkconf -z
+
+nslookup srv-web-s4-1.worldCompany
+
+On ne pouvait pas cependant vérifier totalement notre configuration car on avait besoin des fichiers de configuration pour le site web, le serveur mail..etc
+
+
+IV. Difficultés rencontrées
+Cela a pris un peu de temps avant de pouvoir utiliser notre dns à cause du network-manager, il entrait en conflit avec notre configuration (et il fallait donc
+remplacer 127.0.1.1 par 127.0.0.1)
+De même pour rajouter les clients dans le DNS en communiquant avec le DHCP.
+

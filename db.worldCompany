@@ -1,0 +1,45 @@
+; ZONE : worldCompany
+
+$TTL 7200
+
+@	IN	SOA	srv-dns-s2-1. hostmaster.worldCompany.(
+					2014102001 ; Serial
+                                        14400      ; Refresh
+                                        3600       ; Retry
+                                        1209600    ; Expire - 1 week
+                                        86400 )    ; Minimum
+
+; NAMESERVERS
+
+@	IN	NS	srv-dns-s2-1.
+
+; Enregistrements A/AAAA
+
+@                   	IN                A                    10.4.2.20
+
+srv-web-s4-1       	IN                A                    10.4.4.60
+
+srv-mail-s4-1       	IN                A                    10.4.4.40
+
+srv-dns-s2-1        	IN                A                    10.4.2.20
+
+;srv-stock-s1-1      	IN                A                    10.2.*.1
+
+;srv-compta-s1-1	IN                A                    10.1.*.1
+
+srv-dhcp-1		IN                A                    10.4.1.10
+
+srv-proxy-s4-1		IN                A                    10.4.4.30
+
+srv-snmp-s4-1		IN                A                    10.4.4.50
+
+; Sous-domaines - Serveur web
+www                 IN                CNAME                srv-web-s4-1
+
+; Sous-domaines - Serveur mail
+smtp                IN                CNAME                srv-mail-s4-1
+imap                IN                CNAME                srv-mail-s4-1
+pop                 IN                CNAME                srv-mail-s4-1
+
+; Enregistrement MX (Mail Exchanger)
+;@                   IN                MX          10       mail.domain.tld.
