@@ -1,0 +1,22 @@
+$TTL 7200
+
+@	IN	SOA	srv-dns-s2-1. hostmaster.worldcompany.(
+					2014102002 ; Serial
+                                        14400      ; Refresh
+                                        3600       ; Retry
+                                        1209600    ; Expire - 1 week
+                                        86400 )    ; Minimum
+;
+
+@	IN	NS	srv-dns-s2-1.
+
+
+20.2        IN      PTR     srv-dns-s2-1.
+60.4        IN      PTR     srv-web-s4-1.
+40.4        IN      PTR     srv-mail-s4-1.
+10.1        IN      PTR     srv-dhcp-1.
+30.4        IN      PTR     srv-proxy-s4-1.
+50.4        IN      PTR     srv-snmp-s4-1.
+253.4	    IN	    PTR	    fw-s4-1.
+20.3	    IN	    PTR	    srv-dns-s3-1.
+10.1	    IN	    PTR	    srv-dhcp-1.
